@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main, UnitTest, develop ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, develop, UnitTest ]
 
 permissions:
   contents: write   # cần để commit badge
