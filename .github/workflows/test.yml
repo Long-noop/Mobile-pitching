@@ -2,9 +2,9 @@ name: CI - Test & Coverage
 
 on:
   push:
-    branches: [ main, UnitTest, develop ]
+    branches: [ main, UnitTest, develop, SonarCloud ]
   pull_request:
-    branches: [ main, develop, UnitTest ]
+    branches: [ main, develop, UnitTest, SonarCloud ]
 
 permissions:
   contents: write
