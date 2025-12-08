@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -279,7 +279,11 @@
 <a name='L214'></a><a href='#L214'>214</a>
 <a name='L215'></a><a href='#L215'>215</a>
 <a name='L216'></a><a href='#L216'>216</a>
-<a name='L217'></a><a href='#L217'>217</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -294,23 +298,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -394,7 +398,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -510,25 +518,29 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../constants/colors';
 import BottomNavigationBar from '../../components/BottomNavigationBar';
 &nbsp;
-const AboutScreen = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-  const navigation = <span class="cstat-no" title="statement not covered" >useNavigation();</span>
-  const insets = <span class="cstat-no" title="statement not covered" >useSafeAreaInsets();</span>
+const AboutScreen = () =&gt; {
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 &nbsp;
-  const navItems = <span class="cstat-no" title="statement not covered" >[</span>
+  const navItems = [
     { name: 'Home', icon: 'home-outline', activeIcon: 'home', route: 'DoctorDashboard' },
     { name: 'Chat', icon: 'chatbubbles-outline', activeIcon: 'chatbubbles', route: 'DoctorChatList' },
     { name: 'Calendar', icon: 'calendar-outline', activeIcon: 'calendar', route: 'DoctorCalendar' },
     { name: 'Profile', icon: 'person-outline', activeIcon: 'person', route: 'DoctorProfile' },
   ];
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;View style={[styles.container, { paddingTop: insets.top }]}&gt;
       {/* Header */}
       &lt;View style={styles.header}&gt;
-        &lt;TouchableOpacity onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigation.goBack()}</span> style={styles.backButton}&gt;
+        &lt;TouchableOpacity 
+          onPress={() =&gt; navigation.goBack()} 
+          style={styles.backButton}
+          testID="back-button" // Add this
+        &gt;
           &lt;Ionicons name="arrow-back" size={24} color={Colors.text} /&gt;
         &lt;/TouchableOpacity&gt;
-        &lt;Text style={styles.headerTitle}&gt;About&lt;/Text&gt;
+        &lt;Text style={styles.headerTitle} testID="header-title"&gt;About&lt;/Text&gt;
         &lt;View style={styles.headerPlaceholder} /&gt;
       &lt;/View&gt;
 &nbsp;
@@ -544,13 +556,13 @@ const AboutScreen = <span class="cstat-no" title="statement not covered" ><span 
             style={styles.logo}
             resizeMode="contain"
           /&gt;
-          &lt;Text style={styles.appName}&gt;BKMindCare&lt;/Text&gt;
-          &lt;Text style={styles.appVersion}&gt;Version 1.0.0&lt;/Text&gt;
+          &lt;Text style={styles.appName} testID="app-name"&gt;BKMindCare&lt;/Text&gt;
+          &lt;Text style={styles.appVersion} testID="app-version"&gt;Version 1.0.0&lt;/Text&gt;
         &lt;/View&gt;
 &nbsp;
         {/* About Section */}
         &lt;View style={styles.section}&gt;
-          &lt;Text style={styles.sectionTitle}&gt;About BKMindCare&lt;/Text&gt;
+          &lt;Text style={styles.sectionTitle} testID="about-title"&gt;About BKMindCare&lt;/Text&gt;
           &lt;Text style={styles.sectionText}&gt;
             BKMindCare is a comprehensive mental health support platform designed specifically for students at Ho Chi Minh City University of Technology (HCMUT). Our mission is to provide accessible, professional, and confidential mental health services to help students navigate their academic and personal challenges.
           &lt;/Text&gt;
@@ -610,7 +622,7 @@ const AboutScreen = <span class="cstat-no" title="statement not covered" ><span 
   );
 };
 &nbsp;
-const styles = <span class="cstat-no" title="statement not covered" >StyleSheet.create({</span>
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
@@ -718,7 +730,7 @@ export default AboutScreen;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-12-08T15:23:33.720Z
+                at 2025-12-08T15:57:57.196Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
