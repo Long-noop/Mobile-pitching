@@ -1090,112 +1090,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 ```
 
-### Bước 3: Tạo Workflow tổng hợp cho CI/CD
-
-Tạo file `.github/workflows/ci.yml`:
-
-```yaml
-name: CI/CD Pipeline
-
-on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  test:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Run tests
-        run: npm test
-      
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: test-results
-          path: |
-            coverage/
-          retention-days: 7
-  
-  lint:
-    name: Linting
-    runs-on: ubuntu-latest
-    needs: test
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Run ESLint
-        run: npm run lint -- --max-warnings=0
-      
-      - name: Run TypeScript check
-        run: npx tsc --noEmit
-  
-  sonarcloud:
-    name: SonarCloud Analysis
-    runs-on: ubuntu-latest
-    needs: [test, lint]
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Run tests with coverage
-        run: npm run test:coverage
-      
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.projectKey=your-organization_btl-react-native
-            -Dsonar.organization=your-organization
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.sources=src
-            -Dsonar.test.inclusions=**/*.test.tsx,**/*.test.ts
-            -Dsonar.exclusions=node_modules/**,**/*.d.ts
-            -Dsonar.coverage.exclusions=**/*.test.tsx,**/*.test.ts
-```
-
 ### Bước 4: Cập nhật package.json Scripts
 
 Thêm script ESLint (nếu chưa có):
@@ -1224,7 +1118,7 @@ Thêm script ESLint (nếu chưa có):
 
 ## ⚙️ CẤU HÌNH SONARCLOUD CHO PROJECT
 
-### Bước 1: Tạo `sonar-project.properties`
+### Tạo `sonar-project.properties`
 
 Tạo file `sonar-project.properties` ở root project:
 
@@ -1258,41 +1152,6 @@ sonar.qualitygate.wait=true
 sonar.qualitygate.timeout=10
 ```
 
-### Bước 2: Tạo ESLint Config
-
-Tạo file `.eslintrc.js`:
-
-```javascript
-module.exports = {
-  root: true,
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'plugin:react-native/all',
-  ],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react', 'react-native'],
-  env: {
-    'react-native/react-native': true,
-    jest: true,
-  },
-  rules: {
-    'react/react-in-jsx-scope': 'off',
-    'react/prop-types': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'warn',
-    'react-native/no-unused-styles': 'warn',
-    'react-native/split-platform-components': 'warn',
-  },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
-};
-```
-
 ---
 
 ## 🚀 CHẠY WORKFLOW VÀ KIỂM TRA KẾT QUẢ
@@ -1301,7 +1160,7 @@ module.exports = {
 
 ```bash
 # Thêm các file mới
-git add .github/ package.json sonar-project.properties .eslintrc.js
+git add .github/ package.json sonar-project.properties
 
 # Commit
 git commit -m "feat: add SonarCloud integration and GitHub Actions workflow"
@@ -1318,7 +1177,6 @@ git push origin main
 
 **Expected Result:**
 - ✅ Test job: PASS
-- ✅ Lint job: PASS (hoặc chỉ warnings)
 - ✅ SonarCloud job: PASS
 
 ### Bước 3: Kiểm tra SonarCloud
